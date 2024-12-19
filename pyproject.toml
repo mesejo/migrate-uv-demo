@@ -11,10 +11,22 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dynamic = ["version"]
+
 [project.optional-dependencies]
 tests = [
     "pytest",
 ]
+
 [tool.maturin]
 python-source = "python"
 features = ["pyo3/extension-module"]
+
+[tool.poetry]
+name = "migrate-uv-demo"
+version = "0.1.0"
+description = ""
+authors = ["Daniel Mesejo <mesejoleon@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
