@@ -10,12 +10,12 @@ As an aside, the steps to create (smoothly) a project similar to this one are:
     pipx install maturin
     ```
 
-2. Install poetry 
+2. Install poetry
 
     ```shell
     pipx install poetry
     ```
-   
+
 3. Create a project with `maturin`
 
     ```shell
@@ -23,4 +23,3 @@ As an aside, the steps to create (smoothly) a project similar to this one are:
     ```
 
 4. Delete the `[build-system]` section from the generated `pyproject.toml` and run `poetry init`, rollback to maturin as a build system.
-
