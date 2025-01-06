@@ -2,14 +2,6 @@ name: ci-test
 
 on:
   push:
-    # Skip the backend suite if all changes are docs
-    paths-ignore:
-      - "docs/**"
-      - "**/*.md"
-      - "**/*.qmd"
-      - "*.md"
-      - "codecov.yml"
-      - ".envrc"
     branches:
       - main
       - master
@@ -38,19 +30,19 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
+      - name: install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
 
-      - name: Poetry install
-        run: |
-          poetry lock
-          poetry install --with="dev" --extras="duckdb"
+      - name: install dependencies
+        run: uv sync --all-extras --all-groups --no-install-project
         working-directory: ${{ github.workspace }}
 
       - name: maturin develop
-        run: poetry run maturin develop --release
+        run: uv run maturin develop
         working-directory: ${{ github.workspace }}
 
-      - name: poetry pytest
-        run: poetry run pytest --import-mode=importlib
+      - name: pytest
+        run: uv run pytest --import-mode=importlib
         working-directory: ${{ github.workspace }}
