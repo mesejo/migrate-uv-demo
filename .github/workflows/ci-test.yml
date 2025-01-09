@@ -40,7 +40,7 @@ jobs:
         working-directory: ${{ github.workspace }}
 
       - name: maturin develop
-        run: uv run maturin develop
+        run: uv run maturin develop --uv
         working-directory: ${{ github.workspace }}
 
       - name: pytest
